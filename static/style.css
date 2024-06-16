@@ -46,7 +46,7 @@ html::-webkit-scrollbar-track{
 #home {
   width: 100%;
   height: 90vh; /* Keep the height as per your requirement */
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/static/pictures/1.png);
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/static/pictures/5.png);
   background-repeat: no-repeat;
   background-size: cover; /* Ensures the background covers the whole area */
   background-position: right; /* Positions the background to the right */
