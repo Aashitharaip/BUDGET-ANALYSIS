@@ -14,3 +14,28 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+
+.btn-primary {
+    background-color: #796e35;
+    border-color: #796e35;
+}
+
+.btn-primary:hover {
+    background-color: rgb(139, 160, 62);
+    border-color: rgb(139, 160, 62);
+}
+
+.form-check-input:checked {
+    background-color: #796e35;
+    border-color: #796e35;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem #796e35;
+}
+
+.form-control:hover {
+    border-color: #796e35;
+    box-shadow: 0 0 5px #796e35;
+}
