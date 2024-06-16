@@ -12,7 +12,7 @@ html::-webkit-scrollbar-track{
 }
 /* navbar */
 #navbar{
-  background-color: #b2744c;
+  background-color: #796e35;
   font-family: 'Roboto', sans-serif;
 }
 #logo img{
@@ -34,14 +34,14 @@ html::-webkit-scrollbar-track{
   color: black;
 }
 .btn-brown {
-    background-color: brown;
-    border-color: brown;
-    color: white; /* Text color */
+    background-color: #0e0c07;
+    border-color: rgb(31, 14, 14);
+    color: rgb(15, 7, 7);
 }
 
 .btn-brown:hover {
-    background-color: #a0522d; /* Darker shade of brown for hover effect */
-    border-color: #a0522d;
+    background-color: #e9e8e4;
+    border-color:#413509;
 }
 
 /* navbar */
@@ -60,18 +60,19 @@ html::-webkit-scrollbar-track{
   margin-left: 56px;
 }
 .content h3{
-  font-size: 50px;
-  color: white;
+  font-size: 80px;
+  color:#aca273;
 }
 .content p{
+  font-size: 23px;
   margin-top: 10px;
-  color: white;
+  color: #bda437;
 }
 #btn{
   width: 150px;
   height: 36px;
   margin-top: 20px;
-  background: white;
+  background: rgb(183, 187, 128);
   border-radius: 5px;
   font-weight: bold;
   border: none;
@@ -79,7 +80,7 @@ html::-webkit-scrollbar-track{
   cursor: pointer;
 }
 #btn:hover{
-  background: #b2744c;
+  background: #796e35;
   color: white;
 }
 /* home content */
