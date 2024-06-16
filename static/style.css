@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+}
+.all-content{
+  background: #f7f5f2;
+}
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+/* navbar */
+#navbar{
+  background-color: #b2744c;
+  font-family: 'Roboto', sans-serif;
+}
+#logo img{
+  width: 160px;
+  margin-left: 40px;
+}
+.navbar-nav{
+  margin-left: 50px;
+}
+.nav-item .nav-link{
+  color: black;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+.nav-item .nav-link:hover{
+  background: #f7f5f2;
+  border-radius: 5px;
+  color: black;
+}
+.btn-brown {
+    background-color: brown;
+    border-color: brown;
+    color: white; /* Text color */
+}
+
+.btn-brown:hover {
+    background-color: #a0522d; /* Darker shade of brown for hover effect */
+    border-color: #a0522d;
+}
+
+/* navbar */
+/* home content */
+#home{
+    width: 100%;
+    height: 90vh;
+    background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/static/pictures/backg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:100%;
+    font-family: 'Roboto', sans-serif;
+}
+.content{
+  padding-top: 210px;
+  margin-left: 56px;
+}
+.content h3{
+  font-size: 50px;
+  color: white;
+}
+.content p{
+  margin-top: 10px;
+  color: white;
+}
+#btn{
+  width: 150px;
+  height: 36px;
+  margin-top: 20px;
+  background: white;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+#btn:hover{
+  background: #b2744c;
+  color: white;
+}
+/* home content */
