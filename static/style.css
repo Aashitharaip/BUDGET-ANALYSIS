@@ -4,52 +4,54 @@
     box-sizing: border-box;
     font-family: 'Merriweather', serif;
 }
-.all-content{
-  background: black;
-}
+
 html::-webkit-scrollbar-track{
   background: transparent;
 }
+
 /* navbar */
+
 #navbar{
   background-color: #4f5539;
   font-family: 'Roboto', sans-serif;
 }
+
 #logo img{
   width: 160px;
   margin-left: 40px;
 }
-.navbar-nav{
-  margin-left: 50px;
+
+.navbar-nav {
+  margin-left: 20px;
+  justify-self: space-between;
 }
-.nav-item .nav-link{
-  color: black;
-  margin-left: 10px;
-  font-weight: bold;
-  transition: 0.5s;
+
+.nav-item .nav-link {
+  color: #aca273;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  transition: 0.2s;
 }
-.nav-item .nav-link:hover{
+
+.nav-item .nav-link:hover {
   background: #aca273;
-  border-radius: 5px;
-  color: black;
-}
-.btn-brown {
-    color: rgb(15, 7, 7);
+  border-radius: 10px;
+  color: #333c30; 
 }
 
-.btn-brown:hover {
-    background-color: #aca273;
-}
+/*navbar*/
 
-/* navbar */
-/* home content */
+/*home content*/
+
 #home {
   width: 100%;
-  height: 90vh; /* Keep the height as per your requirement */
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/static/pictures/5.png);
+  height: 90vh;
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/static/pictures/4.png);
   background-repeat: no-repeat;
-  background-size: cover; /* Ensures the background covers the whole area */
-  background-position: right; /* Positions the background to the right */
+  background-size: cover; 
+  background-position: right;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -57,28 +59,43 @@ html::-webkit-scrollbar-track{
   padding-top: 190px;
   margin-left: 50px;
 }
+
 .content h3{
   font-size: 60px;
-  color:#aca273;
+  color: #aca273;
 }
+
 .content p{
   font-size: 18px;
   margin-top: 10px;
   color: #aca273;
 }
-#btn{
-  width: 150px;
-  height: 36px;
-  margin-top: 20px;
-  background: rgb(183, 187, 128);
+
+.btn {
+  text-decoration: none;
   border-radius: 5px;
-  font-weight: bold;
   border: none;
-  transition: 0.5s ease;
+  text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-#btn:hover{
-  background: #796e35;
-  color: white;
+
+.btn:hover {
+  background-color: #796e35; 
+}
+
+.btn.btn-primary {
+  background-color: #aca273;
+  color: #333c30;
+  padding: 5px 40px 5px 40px;
+  border-color: #4f5539 ;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.btn.btn-primary:hover {
+  background-color: #4f5539;
+  border-color: #aca273;
+  color: #aca273;
 }
 /* home content */
