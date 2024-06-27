@@ -7,6 +7,30 @@ body, html {
     background-color: #4f5539;
 }
 
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#4f5539;
+    font-size: 30px;
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    color:#4f5539;
+    font-size: 14px;
+    padding-top: 30px;
+}
+
+.footer:hover {
+    color:#4f5539;
+    font-size: 16px;
+}
+
+
 .form-container {
     width: 100%;
     max-height: 80vh;
@@ -87,19 +111,3 @@ body, html {
     border-radius: 8px;
 }
 
-.form-container::-webkit-scrollbar-thumb {
-    background-color: #4f5539;
-    border-radius: 8px;
-    border: 3px solid #aca273;
-}
-
-.form-container::-webkit-scrollbar-thumb:hover {
-    background-color: #71796d;
-}
-
-/* Firefox scrollbar styling */
-
-.form-container {
-    scrollbar-width: thin;
-    scrollbar-color: #4f5539 #aca273;
-}
