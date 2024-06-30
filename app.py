@@ -14,5 +14,9 @@ def login():
 def signin():
     return render_template('signin.html')
 
+@app.route("/info")
+def info():
+    return render_template('info.html')
+
 if __name__=="__main__":
     app.run(debug=True,port=8000)

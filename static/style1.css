@@ -81,20 +81,6 @@ body, html {
     border-color: #4f5539;
 }
 
-.form-check-input {
-    background-color: #aca273;
-    border-color: #4f5539;
-}
-
-.form-check-input:checked {
-    background-color: #4f5539;
-    border-color: #4f5539;
-}
-
-.form-check-input:focus {
-    box-shadow: 0 0 0 0.2rem #4f5539;
-}
-
 .form-control:hover {
     border-color: #4f5539;
     box-shadow: 0 0 5px #4f5539;
