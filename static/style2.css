@@ -1,7 +1,7 @@
 #home {
   width: 100%;
   height: 90vh;
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(/static/pictures/w1.png);
+  background-image:url(/static/pictures/w1.png);
   background-repeat: no-repeat;
   background-size: cover; 
   background-position: right;
@@ -13,36 +13,52 @@
   width: 80%;
   max-height: 1000px;
   max-width: 600px;
-  margin: 80px 275px;
+  margin: 25px 290px;
   border-radius: 10px;
-  padding: 30px;
+  padding:45px;
   color: #babda4;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h1 {
-  text-decoration: underline;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding:10px 5px 10px 10px;
+  background-color: #47503a;
+  color: #babda4;
+  border-radius: 8px;
+  margin:10px 1px 15px 1px;
 }
 
 .para {
-  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  font-style: oblique;
+  font-weight: 550;
 }
 
 .btn {
   width: 100%;
   font-weight: 400;
-  border: 0.5px solid;
+  border: 2px solid;
   color: #babda4;
   border-color: #babda4;
-  border-radius: 10px;
-  margin: 10px 0px;
+  border-radius: 8px;
+  margin: 3px 0px;
   padding: 1px;
-  font-size: 30px;
+  font-size: 25px;
   cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: oblique;
+  font-weight: 400;
 }
 
 .btn:hover {
+  color: #47503a;
+  background-color: #babda4;
+  border-color: #47503a;
+}
+
+.btn.selected {
   color: #47503a;
   background-color: #babda4;
   border-color: #47503a;
@@ -92,4 +108,21 @@ h1 {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+
+#input-name{
+  border-color: #47503a ;
+  color: #47503a;
+  font-size: 20px;
+  background-color: #babda4;
+  padding: 8px 10px 8px 10px;
+}
+
+#input-name::placeholder {
+  color: #47503a;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  padding-left: 5px;
+  margin-left: 4px;
 }

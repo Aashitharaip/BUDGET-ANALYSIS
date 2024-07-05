@@ -8,17 +8,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
             responses[question] = answer;
 
             document.querySelectorAll(`#${question} .btn`).forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            event.target.classList.add('selected');
         });
     });
 
     window.nextQuestion = function(current) {
-        if (responses[`question${current}`]) {
-            localStorage.setItem(`question${current}`, responses[`question${current}`]);
-            document.getElementById(`question${current}`).classList.remove('active');
-            document.getElementById(`question${current + 1}`).classList.add('active');
+        if (current === 1) {
+            let name = document.getElementById('input-name').value;
+            if (name) {
+                responses[`question${current}`] = name;
+                localStorage.setItem(`question${current}`, name);
+                document.getElementById(`question${current}`).classList.remove('active');
+                document.getElementById(`question${current + 1}`).classList.add('active');
+            } else {
+                alert('Please enter your name before proceeding.');
+            }
         } else {
-            alert('Please select an answer before proceeding.');
+            if (responses[`question${current}`]) {
+                localStorage.setItem(`question${current}`, responses[`question${current}`]);
+                document.getElementById(`question${current}`).classList.remove('active');
+                document.getElementById(`question${current + 1}`).classList.add('active');
+            } else {
+                alert('Please select an answer before proceeding.');
+            }
         }
     }
 
@@ -28,8 +40,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     window.submitSurvey = function() {
-        if (responses[`question4`]) {
-            localStorage.setItem(`question4`, responses[`question4`]);
+        if (responses[`question5`]) {
+            localStorage.setItem(`question5`, responses[`question5`]);
             document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
             document.getElementById('thankyou').style.display = 'block';
         } else {
