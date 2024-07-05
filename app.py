@@ -38,8 +38,12 @@ def signup():
             flash('All fields are required!', 'danger')
             return redirect(url_for('signup'))
         try:
-            database.add_user(name, email, contact, password)
-            flash('User registered successfully!', 'success')
+            user= database.get_user_by_email(email)
+            if user:
+                flash("User already exists",'danger')
+            else:
+                database.add_user(name, email, contact, password)
+                flash('User registered successfully!', 'success')
             return redirect(url_for('signin'))
         except Exception as e:
             flash(f'Error adding user: {str(e)}', 'danger')
