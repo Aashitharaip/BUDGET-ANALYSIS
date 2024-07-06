@@ -1,0 +1,32 @@
+body {
+    background-image: url(/static/pictures/w2.png);
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #47503a;
+}
+
+#main {
+    background-color: #47503a;
+    margin: 100px 280px 10px 11px;
+    border-radius: 8px;
+    padding: 0; /* Ensure no extra padding in the parent container */
+}
+
+.description {
+    font-size: 45px;
+    color: #babda4;
+    padding: 30px 20px; /* Adjusted to remove padding-bottom */
+    margin-bottom: 0px; /* Ensure minimal margin between .description divs */
+}
+
+.description p {
+    margin-top: 0px;
+    margin-bottom: 15px; /* Add margin-bottom to create space between paragraphs */
+}
+
+.para1 {
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

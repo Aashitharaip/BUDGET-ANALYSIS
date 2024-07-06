@@ -21,7 +21,7 @@ def signin():
             session['user'] = {'email': user['email']}
             flash('Logged in successfully!', 'success')
             print(f"Session data: {session['user']}")
-            return redirect(url_for('info'))
+            return redirect(url_for('info'))                                 
         else:
             flash('Invalid email or password', 'danger')
             return redirect(url_for('signin'))
@@ -59,6 +59,11 @@ def info():
     else:
         flash('Please sign in to view this page.', 'danger')
         return redirect(url_for('signin'))
+    
+@app.route('/expenses')
+def expenses():
+    users = database.get_users()
+    return render_template('expenses.html', users=users)
 
 if __name__ == '__main__':
     app.run(debug=True)
