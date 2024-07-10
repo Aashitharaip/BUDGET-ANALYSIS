@@ -17,8 +17,8 @@ def signin():
         password = request.form['password']
         user = database.get_user_by_email(email)
         print(f"User fetched for email {email}: {user}")
+        session['user'] = {'email': user['email']}
         if user and user['password'] == password:
-            session['user'] = {'email': user['email']}
             flash('Logged in successfully!', 'success')
             print(f"Session data: {session['user']}")
             return redirect(url_for('info'))                                 
