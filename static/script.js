@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let answer = event.target.getAttribute('data-answer');
             responses[question] = answer;
 
-            document.querySelectorAll(`#${question} .btn`).forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll(`#${question} .btn`).forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
         });
     });
@@ -42,8 +42,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
     window.submitSurvey = function() {
         if (responses[`question5`]) {
             localStorage.setItem(`question5`, responses[`question5`]);
-            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
-            document.getElementById('thankyou').style.display = 'block';
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: responses['question1'],
+                    spendOn: responses['question2'],
+                    homeStatus: responses['question3'],
+                    sneakyExpenses: responses['question4'],
+                    debt: responses['question5']
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+                    document.getElementById('thankyou').style.display = 'block';
+                } else {
+                    alert('There was an error submitting the survey.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('There was an error submitting the survey.');
+            });
         } else {
             alert('Please select an answer before submitting.');
         }
