@@ -1,9 +1,8 @@
-from flask import Flask, session, redirect, url_for, flash, render_template, request
+from flask import Flask, session, redirect, url_for, flash, render_template, request, jsonify
 import database  
 
 app = Flask(__name__)
 app.secret_key = 'ltkrj6iekrlkwhjrnfjsbdhnknfksmtij'  
-
 
 @app.route('/')
 def index():
@@ -16,12 +15,10 @@ def signin():
         email = request.form['email']
         password = request.form['password']
         user = database.get_user_by_email(email)
-        print(f"User fetched for email {email}: {user}")
         if user and user['password'] == password:
-            session['user'] = {'email': user['email']}
-            flash('Logged in successfully!', 'success')
-            print(f"Session data: {session['user']}")
-            return redirect(url_for('info'))                                 
+            if session['user'] == {'email': user['email']}:
+                flash('Logged in successfully!', 'success')
+            return redirect(url_for('info'))
         else:
             flash('Invalid email or password', 'danger')
             return redirect(url_for('signin'))
@@ -29,7 +26,7 @@ def signin():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if request.method == 'POST':
+    if request.method == ('POST'):
         name = request.form['name']
         email = request.form['email']
         contact = request.form['contact']
@@ -38,9 +35,9 @@ def signup():
             flash('All fields are required!', 'danger')
             return redirect(url_for('signup'))
         try:
-            user= database.get_user_by_email(email)
+            user = database.get_user_by_email(email)
             if user:
-                flash("User already exists",'danger')
+                flash("User already exists", 'danger')
             else:
                 database.add_user(name, email, contact, password)
                 flash('User registered successfully!', 'success')
@@ -52,7 +49,6 @@ def signup():
 
 @app.route('/info')
 def info():
-    print(f"Session data at /info: {session}")
     if 'user' in session:
         users = database.get_users()
         return render_template('info.html', users=users)
@@ -64,6 +60,21 @@ def info():
 def expenses():
     users = database.get_users()
     return render_template('expenses.html', users=users)
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    data = request.get_json()
+    name = data.get('name')
+    spend_on = data.get('spendOn')
+    home_status = data.get('homeStatus')
+    sneaky_expenses = data.get('sneakyExpenses')
+    debt = data.get('debt')
+
+    try:
+        database.insert_response(name, spend_on, home_status, sneaky_expenses, debt)
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
