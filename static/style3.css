@@ -11,19 +11,19 @@ body {
     background-color: #47503a;
     margin: 30px 280px 10px 11px;
     border-radius: 8px;
-    padding: 0; /* Ensure no extra padding in the parent container */
+    padding: 0;
 }
 
 .description {
     font-size: 45px;
     color: #babda4;
-    padding: 30px 20px; /* Adjusted to remove padding-bottom */
-    margin-bottom: 0px; /* Ensure minimal margin between .description divs */
+    padding: 30px 20px; 
+    margin-bottom: 0px; 
 }
 
 .description p {
     margin-top: 0px;
-    margin-bottom: 15px; /* Add margin-bottom to create space between paragraphs */
+    margin-bottom: 15px; 
 }
 
 .para1 {
@@ -35,7 +35,7 @@ body {
 .container {
     display: flex;
     height: 100%;
-    justify-content: space-evenly; /* Use space-evenly to evenly space items */
+    justify-content: space-evenly;
     align-items: flex-start;
     gap: 3em;
     flex-grow: 1;
@@ -43,12 +43,12 @@ body {
 }
 
 #div1, #div2, #div3 {
-    height: auto; /* Allow height to adjust based on content */
+    height: auto; 
     width: 25em;
     background-color: #47503a;
     margin: 8px 0;
     text-align: left;
-    padding: 15px; /* Adjust padding for better spacing */
+    padding: 15px; 
     border-radius: 10px;
 }
 
@@ -56,41 +56,40 @@ h1 {
     color: #babda4;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 30px;
-    margin-bottom: 20px; /* Add margin-bottom for spacing */
-
+    margin-bottom: 20px; 
 }
 
 .form-group {
     display: flex;
-    flex-direction: column; /* Ensure label and input are stacked */
-    margin-bottom: 15px; /* Add margin-bottom for spacing */
+    flex-direction: column; 
+    margin-bottom: 15px; 
 }
 
 .form-group label {
     color: #babda4;
     margin-left: 2px;
     font-size: 20px;
-    padding: 20px 0 5px 0; /* Adjust padding for better spacing */
+    padding: 20px 0 5px 0; 
 }
 
 .form-group input {
     font-size: 1.2rem;
     padding: 8px;
-    border: 3px solid #babda4; /* Set initial border style */
+    border: 3px solid #babda4; 
     color: #babda4;
     background-color: #47503a;
-    border-radius: 5px; /* Add border-radius for better styling */
-    transition: border-color 0.3s ease; /* Add transition for smooth hover effect */
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
 }
 
 .form-group input:focus {
-    outline: none; /* Remove the default focus outline */
+    outline: none; 
     font-size: 1.2rem;
     padding: 8px;
-    border: 4px solid #babda4; /* Set initial border style */
+    border: 4px solid #babda4; 
     color: #babda4;
     background-color: #47503a;
-    border-radius: 5px; /* Add border-radius for better styling */
+    border-radius: 5px; 
     transition: border-color 0.3s ease; 
 }
 
@@ -101,11 +100,12 @@ h1 {
 }
 
 #heading{
-    font-size: 70px;
+    font-size: 40px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding: 0px 0px 5px 0px;
-    text-align: center;
+    text-align: left;
     text-shadow: #babda4;
+    margin-top: 70px;
 }
 
 .custom-hr {
@@ -131,7 +131,7 @@ h1 {
 .btn.btn-primary {
     background-color: #babda4;
     color: #47503a;
-    padding: 10px 40px; /* Adjust padding as needed */
+    padding: 10px 40px; 
     border-color: #47503a;
     font-weight: 600;
     font-size: 20px;
@@ -144,3 +144,52 @@ h1 {
     color: #babda4;
 }
 
+.form-group1 {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 15px; 
+}
+
+.form-group1 label {
+    color: #babda4;
+    margin-left: 2px;
+    font-size: 30px;
+    padding: 20px 0 12px 0; 
+}
+
+.form-group1 input {
+    font-size: 1.8rem;
+    padding: 11px;
+    border: 3px solid #babda4; 
+    color: #babda4;
+    background-color: #47503a;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group1 input:focus {
+    outline: none; 
+    font-size: 1.8rem;
+    padding: 11px;
+    border: 4px solid #babda4; 
+    color: #babda4;
+    background-color: #47503a;
+    border-radius: 5px; 
+    transition: border-color 0.3s ease; 
+}
+
+.form-group1 input::placeholder {
+    color: #babda4;
+    font-size: 21px;
+    margin-left: 4px;
+}
+
+.container1 {
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 3em;
+    flex-grow: 1;
+    margin-left: 1px;
+}
