@@ -3,7 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 # Firebase initialization
-cred = credentials.Certificate('C:/Users/Aashitha/BUDGET-ANALYSIS/serviceAccountKey.json')
+cred = credentials.Certificate('C:/Users/91968/Desktop/BUDGET-ANALYSIS/serviceAccountKey.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://budget-analysis-1b3fa-default-rtdb.firebaseio.com/'
 })
