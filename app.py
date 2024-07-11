@@ -16,13 +16,14 @@ def signin():
         password = request.form['password']
         user = database.get_user_by_email(email)
         if user and user['password'] == password:
-            if session['user'] == {'email': user['email']}:
-                flash('Logged in successfully!', 'success')
+            session['user'] = {'email': user['email']}  
+            flash('Logged in successfully!', 'success')
             return redirect(url_for('info'))
         else:
             flash('Invalid email or password', 'danger')
             return redirect(url_for('signin'))
     return render_template('signin.html')
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
