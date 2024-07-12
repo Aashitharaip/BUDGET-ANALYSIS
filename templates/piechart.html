@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie Chart</title>
+    <link rel="stylesheet" href="/static/style4.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="main">
+        <h1>Your Budget Breakdown</h1>
+        <p>Based on your income, here is the breakdown of your budget according to the 50/30/20 rule.</p>
+        <div id="chart-container">
+            <canvas id="budgetPieChart"></canvas>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var needs = JSON.parse('{{ needs|tojson|safe }}');
+            var wants = JSON.parse('{{ wants|tojson|safe }}');
+            var savings = JSON.parse('{{ savings|tojson|safe }}');
+
+            var ctx = document.getElementById('budgetPieChart').getContext('2d');
+            var budgetPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Needs', 'Wants', 'Savings'],
+                    datasets: [{
+                        data: [needs, wants, savings],
+                        backgroundColor: ['#babda4', '#a4babd', '#bda4ba'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    var label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += Math.round(context.raw) + '₹';
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false  // Hide legend to avoid redundancy
+                    },
+                    title: {
+                        display: true,
+                        text: 'Budget Categories',
+                        fontSize: 16,
+                        fontColor: '#333',  // Adjust font color as needed
+                        padding: 20
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

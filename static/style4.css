@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #47503a;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+#main {
+    text-align: center;
+}
+
+#chart-container {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 40px;
+}
+
+canvas {
+    background-color: #47503a;
+}
+
+.chartjs-text {
+    fill: #fff;  /* Changing font color of chart labels to white */
+}

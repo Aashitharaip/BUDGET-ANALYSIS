@@ -66,11 +66,6 @@ def info():
     else:
         flash('Please sign in to view this page.', 'danger')
         return redirect(url_for('signin'))
-    
-@app.route('/expenses')
-def expenses():
-    users = database.get_users()
-    return render_template('expenses.html', users=users)
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -86,6 +81,41 @@ def submit():
         return jsonify({'status': 'success'}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
+    
+@app.route('/expenses', methods=['GET', 'POST'])
+def expenses():
+    if request.method == 'POST':
+        income = float(request.form.get('income', 0))
+        housing = float(request.form.get('housing', 0))
+        utilities = float(request.form.get('utilities', 0))
+        groceries = float(request.form.get('groceries', 0))
+        transportation = float(request.form.get('transportation', 0))
+        childcare = float(request.form.get('childcare', 0))
+        healthcare = float(request.form.get('healthcare', 0))
+        student = float(request.form.get('student', 0))
+        debt = float(request.form.get('debt', 0))
+        entertainment = float(request.form.get('entertainment', 0))
+        dining = float(request.form.get('dining', 0))
+        hobbies = float(request.form.get('hobbies', 0))
+        splurges = float(request.form.get('splurges', 0))
+        emergency_fund = float(request.form.get('Emergency_Fund', 0))
+        retirement = float(request.form.get('retirement', 0))
+        vacation = float(request.form.get('vacation', 0))
+
+        total_needs = housing + utilities + groceries + transportation + childcare + healthcare + student + debt
+        total_wants = entertainment + dining + hobbies + splurges
+        total_savings = emergency_fund + retirement + vacation
+
+        return redirect(url_for('piechart', needs=total_needs, wants=total_wants, savings=total_savings))
+    return render_template('expenses.html')
+
+@app.route('/piechart', methods=['GET'])
+def piechart():
+    needs = float(request.args.get('needs', 0))
+    wants = float(request.args.get('wants', 0))
+    savings = float(request.args.get('savings', 0))
+
+    return render_template('piechart.html', needs=needs, wants=wants, savings=savings)
 
 if __name__ == '__main__':
     app.run(debug=True)

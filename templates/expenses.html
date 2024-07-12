@@ -22,10 +22,10 @@
     </div>
     <h1 id="heading">Enter your income to get your 50/30/20 budget</h1>
     <div class="container1">
-    <div class="form-group1">
-        <label for="income" class="form-label">What is your after-tax income?</label>
-        <input type="number" class="form-control" id="income" name="income" placeholder="₹">
-    </div>
+        <div class="form-group1">
+            <label for="income" class="form-label">What is your after-tax income?</label>
+            <input type="number" class="form-control" id="income" name="income" placeholder="₹">
+        </div>
     </div>
     <h1 id="heading">Personalize your monthly budget</h1>
     <div class="container">
@@ -103,7 +103,34 @@
         </div>
     </div>
     <div id="spacing">
-        <a class="btn btn-primary" href="/expenses" role="button">Submit</a>
+        <button class="btn btn-primary" onclick="submitSurvey()">Submit</button>
     </div>
+
+    <script>
+        function submitSurvey() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const housing = parseFloat(document.getElementById('housing').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const groceries = parseFloat(document.getElementById('groceries').value) || 0;
+            const transportation = parseFloat(document.getElementById('transportation').value) || 0;
+            const childcare = parseFloat(document.getElementById('childcare').value) || 0;
+            const healthcare = parseFloat(document.getElementById('healthcare').value) || 0;
+            const student = parseFloat(document.getElementById('student').value) || 0;
+            const debt = parseFloat(document.getElementById('debt').value) || 0;
+            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+            const dining = parseFloat(document.getElementById('dining').value) || 0;
+            const hobbies = parseFloat(document.getElementById('hobbies').value) || 0;
+            const splurges = parseFloat(document.getElementById('splurges').value) || 0;
+            const emergencyFund = parseFloat(document.getElementById('Emergency Fund').value) || 0;
+            const retirement = parseFloat(document.getElementById('retirement').value) || 0;
+            const vacation = parseFloat(document.getElementById('vacation').value) || 0;
+
+            const totalNeeds = housing + utilities + groceries + transportation + childcare + healthcare + student + debt;
+            const totalWants = entertainment + dining + hobbies + splurges;
+            const totalSavings = emergencyFund + retirement + vacation;
+
+            window.location.href = `/piechart?needs=${totalNeeds}&wants=${totalWants}&savings=${totalSavings}`;
+        }
+    </script>
 </body>
 </html>
