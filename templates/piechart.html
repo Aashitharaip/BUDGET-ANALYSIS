@@ -10,7 +10,7 @@
 <body>
     <div id="main">
         <h1>Your Budget Breakdown</h1>
-        <p>Based on your income, here is the breakdown of your budget according to the 50/30/20 rule.</p>
+        <h3>Based on your income, here is the breakdown of your budget according to the 50/30/20 rule.</h3>
         <div id="chart-container">
             <canvas id="budgetPieChart"></canvas>
         </div>
@@ -34,6 +34,17 @@
                 options: {
                     responsive: true,
                     plugins: {
+                        legend: {
+                            labels: {
+                                color: '#000000',// legend label color
+                                font:{
+                                    size:10,
+                                    weight:500
+                                }
+                                
+                                 
+                            }
+                        },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
@@ -45,17 +56,20 @@
                                     return label;
                                 }
                             }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Budget Categories',
+                            font: {
+                                size: 20
+                            },
+                            color: '#000000',
+                            padding: 20
                         }
                     },
-                    legend: {
-                        display: false  // Hide legend to avoid redundancy
-                    },
-                    title: {
-                        display: true,
-                        text: 'Budget Categories',
-                        fontSize: 16,
-                        fontColor: '#333',  // Adjust font color as needed
-                        padding: 20
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
                     }
                 }
             });

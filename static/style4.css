@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #fff;
+    color: #babda4;
 }
 
 #main {
@@ -15,8 +15,8 @@ body {
 }
 
 #chart-container {
-    width: 60%;
-    margin: auto;
+    width: 70%;
+    margin:auto;
     text-align: center;
     margin-top: 50px;
 }
@@ -25,14 +25,12 @@ h1 {
     margin-bottom: 20px;
 }
 
-p {
+h3 {
     margin-bottom: 40px;
 }
 
 canvas {
-    background-color: #47503a;
-}
+    background-color: #aca273;
 
-.chartjs-text {
-    fill: #fff;  /* Changing font color of chart labels to white */
+
 }
