@@ -14,13 +14,23 @@ def signin():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        
+        if not email or not password:
+            flash('Please enter both email and password.', 'danger')
+            return redirect(url_for('signin'))
+        
         user = database.get_user_by_email(email)
-        if user and user['password'] == password:
-            session['user'] = {'email': user['email']}  
-            flash('Logged in successfully!', 'success')
-            return redirect(url_for('info'))
+        
+        if user:
+            if user['password'] == password:
+                session['user'] = {'email': user['email']}
+                flash('Logged in successfully!', 'success')
+                return redirect(url_for('info'))
+            else:
+                flash('Invalid email or password', 'danger')
+                return redirect(url_for('signin'))
         else:
-            flash('Invalid email or password', 'danger')
+            flash('User does not exist.', 'danger')
             return redirect(url_for('signin'))
     return render_template('signin.html')
 

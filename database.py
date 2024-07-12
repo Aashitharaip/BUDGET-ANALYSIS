@@ -3,7 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 # Firebase initialization
-cred = credentials.Certificate('C:/Users/91968/Desktop/BUDGET-ANALYSIS/serviceAccountKey.json')
+cred = credentials.Certificate('serviceAccountKey.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://budget-analysis-1b3fa-default-rtdb.firebaseio.com/'
 })
@@ -37,12 +37,16 @@ def get_user_by_email(email):
     try:
         ref = db.reference('users')
         users = ref.order_by_child('email').equal_to(email).get()
+        print(f"Retrieved users for email {email}: {users}")
         if users:
-            return list(users.values())[0]  
+            user = list(users.values())[0]
+            print(f"User found: {user}")
+            return user
         return None
     except Exception as e:
         print(f"Error getting user by email: {str(e)}")
         return None
+
 
 # SQLite functions:
 def init_db():
