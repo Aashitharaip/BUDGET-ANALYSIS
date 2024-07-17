@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Report</title>
+    <style>
+        /* Add your styles for the PDF here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ session.user.email }}'s Budget Report</h1>
+        <!-- Adjust session.user.email to the appropriate session variable holding user's email -->
+    </div>
+    
+    <h2>Summary Table</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Amount (₹)</th>
+        </tr>
+        <tr>
+            <td>Needs</td>
+            <td>{{ "{:.2f}".format(needs) }} ₹</td>
+            <!-- Adjust formatting as per your needs -->
+        </tr>
+        <tr>
+            <td>Wants</td>
+            <td>{{ "{:.2f}".format(wants) }} ₹</td>
+        </tr>
+        <tr>
+            <td>Savings</td>
+            <td>{{ "{:.2f}".format(savings) }} ₹</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td>{{ "{:.2f}".format(needs + wants + savings) }} ₹</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+</body>
+</html>

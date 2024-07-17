@@ -198,3 +198,27 @@ h1 {
 #spacing{
     margin-bottom: 30px;
 }
+
+.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.flashes li {
+    padding: 20px; 
+    margin-bottom: 15px; 
+    border-radius: 8px;
+    font-size: 1.5em; 
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flashes .error {
+    background-color: #721c24;
+    color: #f8d7da;
+}
+

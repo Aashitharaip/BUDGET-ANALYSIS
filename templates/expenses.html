@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
     <div id="main">
         <div class="description">
             <p><u>Get your 50/30/20 budget and then personalize it to your priorities and situation</u></p>
@@ -20,117 +30,93 @@
             <p class="para1">Money you save for future goals.<br>Examples: emergency fund, home, vacation, retirement, financial freedom</p>
         </div>
     </div>
+    
     <h1 id="heading">Enter your income to get your 50/30/20 budget</h1>
-    <div class="container1">
-        <div class="form-group1">
-            <label for="income" class="form-label">What is your after-tax income?</label>
-            <input type="number" class="form-control" id="income" name="income" placeholder="₹">
-        </div>
-    </div>
-    <h1 id="heading">Personalize your monthly budget</h1>
-    <div class="container">
-        <div id="div1">
-            <h1>Needs <i class="fa-solid fa-house"></i></h1>
-            <hr class="custom-hr">
-            <div class="form-group">
-                <label for="housing" class="form-label">Housing:</label>
-                <input type="number" class="form-control" id="housing" name="housing" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="utilities" class="form-label">Utilities:</label>
-                <input type="number" class="form-control" id="utilities" name="utilities" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="groceries" class="form-label">Groceries:</label>
-                <input type="number" class="form-control" id="groceries" name="groceries" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="transportation" class="form-label">Transportation:</label>
-                <input type="number" class="form-control" id="transportation" name="transportation" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="childcare" class="form-label">Childcare:</label>
-                <input type="number" class="form-control" id="childcare" name="childcare" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="healthcare" class="form-label">Healthcare:</label>
-                <input type="number" class="form-control" id="healthcare" name="healthcare" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="student" class="form-label">Student Loan Payments:</label>
-                <input type="number" class="form-control" id="student" name="student" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="debt" class="form-label">Other Debt Payments:</label>
-                <input type="number" class="form-control" id="debt" name="debt" placeholder="₹">
+    <form method="POST" action="/expenses">
+        <div class="container1">
+            <div class="form-group1">
+                <label for="income" class="form-label">What is your income?</label>
+                <input type="number" class="form-control" id="income" name="income" placeholder="₹" required>
             </div>
         </div>
-        <div id="div2">
-            <h1>Wants <i class="fa-solid fa-gift"></i></h1>
-            <hr class="custom-hr">
-            <div class="form-group">
-                <label for="entertainment" class="form-label">Entertainment:</label>
-                <input type="number" class="form-control" id="entertainment" name="entertainment" placeholder="₹">
+        <h1 id="heading">Personalize your monthly budget</h1>
+        <div class="container">
+            <div id="div1">
+                <h1>Needs <i class="fa-solid fa-house"></i></h1>
+                <hr class="custom-hr">
+                <div class="form-group">
+                    <label for="housing" class="form-label">Housing:</label>
+                    <input type="number" class="form-control" id="housing" name="housing" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="utilities" class="form-label">Utilities:</label>
+                    <input type="number" class="form-control" id="utilities" name="utilities" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="groceries" class="form-label">Groceries:</label>
+                    <input type="number" class="form-control" id="groceries" name="groceries" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="transportation" class="form-label">Transportation:</label>
+                    <input type="number" class="form-control" id="transportation" name="transportation" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="childcare" class="form-label">Childcare:</label>
+                    <input type="number" class="form-control" id="childcare" name="childcare" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="healthcare" class="form-label">Healthcare:</label>
+                    <input type="number" class="form-control" id="healthcare" name="healthcare" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="student" class="form-label">Student Loan Payments:</label>
+                    <input type="number" class="form-control" id="student" name="student" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="debt" class="form-label">Other Debt Payments:</label>
+                    <input type="number" class="form-control" id="debt" name="debt" placeholder="₹">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="dining" class="form-label">Dining Out:</label>
-                <input type="number" class="form-control" id="dining" name="dining" placeholder="₹">
+            <div id="div2">
+                <h1>Wants <i class="fa-solid fa-gift"></i></h1>
+                <hr class="custom-hr">
+                <div class="form-group">
+                    <label for="entertainment" class="form-label">Entertainment:</label>
+                    <input type="number" class="form-control" id="entertainment" name="entertainment" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="dining" class="form-label">Dining Out:</label>
+                    <input type="number" class="form-control" id="dining" name="dining" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="hobbies" class="form-label">Hobbies:</label>
+                    <input type="number" class="form-control" id="hobbies" name="hobbies" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="splurges" class="form-label">Splurges:</label>
+                    <input type="number" class="form-control" id="splurges" name="splurges" placeholder="₹">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="hobbies" class="form-label">Hobbies:</label>
-                <input type="number" class="form-control" id="hobbies" name="hobbies" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="splurges" class="form-label">Splurges:</label>
-                <input type="number" class="form-control" id="splurges" name="splurges" placeholder="₹">
+            <div id="div3">
+                <h1>Savings <i class="fa-solid fa-wallet"></i></h1>
+                <hr class="custom-hr">
+                <div class="form-group">
+                    <label for="emergency_fund" class="form-label">Emergency Fund:</label>
+                    <input type="number" class="form-control" id="emergency_fund" name="emergency_fund" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="retirement" class="form-label">Retirement:</label>
+                    <input type="number" class="form-control" id="retirement" name="retirement" placeholder="₹">
+                </div>
+                <div class="form-group">
+                    <label for="vacation" class="form-label">Vacation / Travel:</label>
+                    <input type="number" class="form-control" id="vacation" name="vacation" placeholder="₹">
+                </div>
             </div>
         </div>
-        <div id="div3">
-            <h1>Savings <i class="fa-solid fa-wallet"></i></h1>
-            <hr class="custom-hr">
-            <div class="form-group">
-                <label for="Emergency Fund" class="form-label">Emergency Fund:</label>
-                <input type="number" class="form-control" id="Emergency Fund" name="Emergency Fund" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="retirement" class="form-label">Retirement:</label>
-                <input type="number" class="form-control" id="retirement" name="retirement" placeholder="₹">
-            </div>
-            <div class="form-group">
-                <label for="vacation" class="form-label">Vacation / Travel:</label>
-                <input type="number" class="form-control" id="vacation" name="vacation" placeholder="₹">
-            </div>
+        <div id="spacing">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </div>
-    <div id="spacing">
-        <button class="btn btn-primary" onclick="submitSurvey()">Submit</button>
-    </div>
-
-    <script>
-        function submitSurvey() {
-            const income = parseFloat(document.getElementById('income').value) || 0;
-            const housing = parseFloat(document.getElementById('housing').value) || 0;
-            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
-            const groceries = parseFloat(document.getElementById('groceries').value) || 0;
-            const transportation = parseFloat(document.getElementById('transportation').value) || 0;
-            const childcare = parseFloat(document.getElementById('childcare').value) || 0;
-            const healthcare = parseFloat(document.getElementById('healthcare').value) || 0;
-            const student = parseFloat(document.getElementById('student').value) || 0;
-            const debt = parseFloat(document.getElementById('debt').value) || 0;
-            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
-            const dining = parseFloat(document.getElementById('dining').value) || 0;
-            const hobbies = parseFloat(document.getElementById('hobbies').value) || 0;
-            const splurges = parseFloat(document.getElementById('splurges').value) || 0;
-            const emergencyFund = parseFloat(document.getElementById('Emergency Fund').value) || 0;
-            const retirement = parseFloat(document.getElementById('retirement').value) || 0;
-            const vacation = parseFloat(document.getElementById('vacation').value) || 0;
-
-            const totalNeeds = housing + utilities + groceries + transportation + childcare + healthcare + student + debt;
-            const totalWants = entertainment + dining + hobbies + splurges;
-            const totalSavings = emergencyFund + retirement + vacation;
-
-            window.location.href = `/piechart?needs=${totalNeeds}&wants=${totalWants}&savings=${totalSavings}`;
-        }
-    </script>
+    </form>
 </body>
 </html>

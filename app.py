@@ -1,6 +1,8 @@
 from flask import Flask, session, redirect, url_for, flash, render_template, request, jsonify
 import database  
 
+
+
 app = Flask(__name__)
 app.secret_key = 'ltkrj6iekrlkwhjrnfjsbdhnknfksmtij'  
 
@@ -85,29 +87,34 @@ def submit():
 @app.route('/expenses', methods=['GET', 'POST'])
 def expenses():
     if request.method == 'POST':
-        income = float(request.form.get('income', 0))
-        housing = float(request.form.get('housing', 0))
-        utilities = float(request.form.get('utilities', 0))
-        groceries = float(request.form.get('groceries', 0))
-        transportation = float(request.form.get('transportation', 0))
-        childcare = float(request.form.get('childcare', 0))
-        healthcare = float(request.form.get('healthcare', 0))
-        student = float(request.form.get('student', 0))
-        debt = float(request.form.get('debt', 0))
-        entertainment = float(request.form.get('entertainment', 0))
-        dining = float(request.form.get('dining', 0))
-        hobbies = float(request.form.get('hobbies', 0))
-        splurges = float(request.form.get('splurges', 0))
-        emergency_fund = float(request.form.get('Emergency_Fund', 0))
-        retirement = float(request.form.get('retirement', 0))
-        vacation = float(request.form.get('vacation', 0))
+        # Retrieve income and expense data from the form, default to 0 if empty
+        income = float(request.form['income'])
+        needs = sum(float(request.form.get(key, 0) or 0) for key in [
+            'housing', 'utilities', 'groceries', 'transportation', 'childcare', 'healthcare', 'student', 'debt'
+        ])
+        wants = sum(float(request.form.get(key, 0) or 0) for key in [
+            'entertainment', 'dining', 'hobbies', 'splurges'
+        ])
+        savings = sum(float(request.form.get(key, 0) or 0) for key in [
+            'emergency_fund', 'retirement', 'vacation'
+        ])
+        
+        total_expenses = needs + wants + savings
 
-        total_needs = housing + utilities + groceries + transportation + childcare + healthcare + student + debt
-        total_wants = entertainment + dining + hobbies + splurges
-        total_savings = emergency_fund + retirement + vacation
+        # Debugging: Print out the calculated values
+        print(f"Income: {income}, Needs: {needs}, Wants: {wants}, Savings: {savings}, Total: {total_expenses}")
+        
+        if total_expenses > income:
+            flash('Your total expenses exceed your income!', 'error')
+            return redirect(url_for('expenses'))  # Redirect back to expenses page
 
-        return redirect(url_for('piechart', needs=total_needs, wants=total_wants, savings=total_savings))
-    return render_template('expenses.html')
+        # Redirect to piechart with URL parameters
+        return redirect(url_for('piechart', needs=needs, wants=wants, savings=savings))
+        
+    else:
+        # Handle the initial GET request
+        return render_template('expenses.html')
+
 
 @app.route('/piechart', methods=['GET'])
 def piechart():
@@ -117,5 +124,20 @@ def piechart():
 
     return render_template('piechart.html', needs=needs, wants=wants, savings=savings)
 
+@app.route('/report', methods=['GET'])
+def report():
+    # Retrieve budget details from session or database
+    budget = session.get('budget', None)
+    if budget:
+        needs = budget['needs']
+        wants = budget['wants']
+        savings = budget['savings']
+        # Render the report template with budget details
+        return render_template('report.html', needs=needs, wants=wants, savings=savings)
+    else:
+        flash('Budget details not found.', 'danger')
+        return redirect(url_for('expenses'))
+
+    
 if __name__ == '__main__':
     app.run(debug=True)
