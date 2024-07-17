@@ -2,19 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pie Chart</title>
-    <link rel="stylesheet" href="/static/style4.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Budget Report</title>
+    <style>
+        /* Add your styles for the PDF here */
+        body {
+            background-color: #333c30; /* Background color of the entire page */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color:#aca273 ;
+        }
+        th {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid whitesmoke;
+            color:#aca273;
+            font-weight: 1000;
+            font-size: large;
+        }
+        td{
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid whitesmoke;
+            color:#333c30;
+            font-weight: 1000;
+            font-size:large;
+
+        }
+        th {
+            background-color:#4f5539;
+        }
+        .chart-container {
+            margin:0 auto;
+            margin-top: 20px;
+            width:30%;
+            
+            
+
+            
+        }
+        h1,h2{
+            color:#aca273;
+            text-align:center;
+        }
+        hr{
+            color:#aca273;
+        }
+    </style>
 </head>
 <body>
-    <div id="main">
-        <h1>Your Budget Breakdown</h1>
-        <h3>Based on your income, here is the breakdown of your budget according to the 50/30/20 rule.</h3>
-        <div id="chart-container">
-            <canvas id="budgetPieChart"></canvas>
-        </div>
+    <h1>Your Budget Breakdown according to the 50-30-20 rule</h1>
+    
+    <h2>Summary Table</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Amount (₹)</th>
+        </tr>
+        <tr>
+            <td>Needs</td>
+            <td>{{ needs }}₹</td>
+        </tr>
+        <tr>
+            <td>Wants</td>
+            <td>{{ wants }}₹</td>
+        </tr>
+        <tr>
+            <td>Savings</td>
+            <td>{{ savings }}₹</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+    <br><br><hr>
+    
+    <div class="chart-container">
+        
+        <canvas id="budgetPieChart"></canvas>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var needs = JSON.parse('{{ needs|tojson|safe }}');
@@ -36,13 +104,10 @@
                     plugins: {
                         legend: {
                             labels: {
-                                color: '#000000',// legend label color
-                                font:{
-                                    size:10,
-                                    weight:500
+                                color: '#aca273', // legend label color
+                                font: {
+                                    size: 12 // Adjust font size as needed
                                 }
-                                
-                                 
                             }
                         },
                         tooltip: {
@@ -52,7 +117,7 @@
                                     if (label) {
                                         label += ': ';
                                     }
-                                    label += Math.round(context.raw) + '₹';
+                                    label += Math.round(context.raw) + '₹'; // Displaying as ₹, adjust as necessary
                                     return label;
                                 }
                             }
@@ -61,9 +126,9 @@
                             display: true,
                             text: 'Budget Categories',
                             font: {
-                                size: 20
+                                size: 25 // Adjust title font size as needed
                             },
-                            color: '#000000',
+                            color: '#aca273',
                             padding: 20
                         }
                     },
