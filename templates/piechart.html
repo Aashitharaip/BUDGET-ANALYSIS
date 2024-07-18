@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Budget Report</title>
     <style>
-        /* Add your styles for the PDF here */
+        
         body {
-            background-color: #333c30; /* Background color of the entire page */
+            background-color: #333c30;
         }
         table {
             width: 100%;
@@ -37,11 +37,7 @@
         .chart-container {
             margin:0 auto;
             margin-top: 20px;
-            width:30%;
-            
-            
-
-            
+            width:30%; 
         }
         h1,h2{
             color:#aca273;
@@ -49,6 +45,20 @@
         }
         hr{
             color:#aca273;
+        }
+        .button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #aca273; 
+            color: #4f5539;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: 1500px;
+            font-size:large;
         }
     </style>
 </head>
@@ -73,7 +83,7 @@
             <td>Savings</td>
             <td>{{ savings }}₹</td>
         </tr>
-        <!-- Add more rows as needed -->
+        
     </table>
     <br><br><hr>
     
@@ -81,8 +91,10 @@
         
         <canvas id="budgetPieChart"></canvas>
     </div>
+    <button class="button" onclick="downloadPDF()">Download PDF</button>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var needs = JSON.parse('{{ needs|tojson|safe }}');
@@ -106,7 +118,7 @@
                             labels: {
                                 color: '#aca273', // legend label color
                                 font: {
-                                    size: 12 // Adjust font size as needed
+                                    size: 12 
                                 }
                             }
                         },
@@ -117,7 +129,7 @@
                                     if (label) {
                                         label += ': ';
                                     }
-                                    label += Math.round(context.raw) + '₹'; // Displaying as ₹, adjust as necessary
+                                    label += Math.round(context.raw) + '₹'; 
                                     return label;
                                 }
                             }
@@ -126,7 +138,7 @@
                             display: true,
                             text: 'Budget Categories',
                             font: {
-                                size: 25 // Adjust title font size as needed
+                                size: 25 
                             },
                             color: '#aca273',
                             padding: 20
@@ -139,6 +151,44 @@
                 }
             });
         });
+        function downloadPDF() {
+            // Hide the download button for the PDF generation
+            var downloadButton = document.querySelector('.button');
+            downloadButton.style.display = 'none';
+
+            var element = document.body;
+            var opt = {
+                margin: 0.5,
+                filename: 'budget_analysis_report.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a3', 
+                    orientation: 'landscape' 
+                },
+                pagebreak: { 
+                    mode: ['avoid-all', 'css', 'legacy']
+                },
+                html2canvas: {
+                    scrollX: 0,
+                    scrollY: 0
+                },
+                onclone: function (clonedDoc) {
+                    // Remove the download button from the cloned document
+                    clonedDoc.querySelector('.button').style.display = 'none';
+                }
+            };
+
+            // Generate the PDF
+            html2pdf().set(opt).from(element).save().then(function () {
+                // Show the download button again after PDF generation
+                downloadButton.style.display = 'block';
+            });
+        }
+
+
+        
     </script>
 </body>
 </html>
